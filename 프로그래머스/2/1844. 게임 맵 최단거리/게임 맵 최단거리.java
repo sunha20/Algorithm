@@ -32,8 +32,10 @@ class Solution {
                 
                 // visit 처리
                 visited[newR][newC] = visited[r][c] + 1;
+                if (newR == maps.length-1 && newC == maps[0].length-1) break;
             }
         }
+        return;
 
     }
 }
