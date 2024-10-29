@@ -4,17 +4,17 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String[] temp = br.readLine().split(" ");
-        double X = Integer.parseInt(temp[0]);
-        double Y = Integer.parseInt(temp[1]);
-        int Z = (int) (Y * 100 / X);
+        long X = Integer.parseInt(temp[0]);
+        long Y = Integer.parseInt(temp[1]);
+        long Z = (Y * 100 / X);
         if (Z == 100) {
             System.out.println(-1);
             return;
         }
 
-        int lo = 0;
-        int hi = 1000000000;
-        int mid = 0, now;
+        long lo = 0;
+        long hi = 1000000000;
+        long mid, now;
 
         while (lo<hi) {
             mid = (lo+hi)/2;
@@ -34,7 +34,7 @@ public class Main {
         else System.out.println(hi);
     }
 
-    private static int getWinRate(double x, double y, int i) {
-        return (int) ((y+i) * 100/(x+i));
+    private static long getWinRate(long x, long y, long i) {
+        return ((y+i) * 100/(x+i));
     }
 }
