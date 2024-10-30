@@ -10,8 +10,29 @@ public class Main {
         }
     }
 
-    private static int getNumOfJump(long n){
-        int k = (int) ((double) ((-1 + Math.sqrt(8*n+1)))/2);
-        return k;
+    private static long getNumOfJump(long n){
+        long hi = 1000000000;
+        long lo = 1;
+        long mid, now;
+        
+        while (lo + 1 < hi) {
+            mid = (hi+lo)/2;
+            now = mid*(mid+1) / 2;
+
+            if (now == n) {
+                lo = mid;
+                break;
+            }
+
+            if (now < n) {
+                lo = mid;
+                continue;
+            }
+
+            if (now >= n) {
+                hi = mid;
+            }
+        }
+        return lo;
     }
 }
