@@ -21,8 +21,10 @@ public class Main {
         }
 
         // 주소 검색
+        StringBuilder result = new StringBuilder();
         for (int m=0; m<M; m++) {
-            System.out.println(memo.get(br.readLine()));
+            result.append(memo.get(br.readLine()) + "\n");
         }
+        System.out.println(result);
     }
 }
