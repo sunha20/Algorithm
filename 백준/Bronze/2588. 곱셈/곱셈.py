@@ -1,11 +1,7 @@
 A = int(input())
-B = int(input())
-b = B
+B = input()
 
-while (b != 0):
-    c = b % 10
-    b //= 10
+for s in reversed(B):
+    print(A*int(s))
     
-    print(A * c)
-    
-print(A*B)
+print(A*int(B))
