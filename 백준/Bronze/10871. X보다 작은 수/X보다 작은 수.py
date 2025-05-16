@@ -1,7 +1,7 @@
 N, X = map(int,input().split())
-Alist = map(int, input().split())
+Alist = input().split()
 
-for _ in range(N):
-    now = next(Alist)
+for i in range(N):
+    now = int(Alist[i])
     if (now < X):
         print(now, end=" ")
