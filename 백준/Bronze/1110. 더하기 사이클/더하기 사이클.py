@@ -1,17 +1,16 @@
 N = int(input())
-cnt = 1
-num1 = N
-num2 = N//10 + N%10
-num = (num1 % 10)*10 + num2 % 10
+lst = [N//10, N%10, N//10 + N%10]
 
+i = 1
+num = 0
 while True:
-    if num == N:
+    a = lst[i] % 10
+    b = lst[i+1] % 10
+    num = a*10 + b
+
+    lst.append(a+b)
+    if (num == N):
         break
+    i+=1
 
-    temp = num1 % 10 + num2 % 10
-    num1 = num2
-    num2 = temp
-    num = (num1 % 10)*10 + num2 % 10
-    cnt += 1
-
-print(cnt)
+print(len(lst)-3)
