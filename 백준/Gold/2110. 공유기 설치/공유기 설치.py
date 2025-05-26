@@ -3,7 +3,7 @@ homes = [int(input()) for _ in range(N)]
 homes.sort()
 
 dl = 1
-dr = (homes[-1] - homes[0])+1
+dr = (homes[-1] - homes[0]) // (C-1) +1
 
 while dl < dr:
     cnt = C - 1
