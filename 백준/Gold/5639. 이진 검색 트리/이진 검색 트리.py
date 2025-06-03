@@ -1,27 +1,33 @@
 import sys
-
-sys.setrecursionlimit(10 ** 9)
+sys.setrecursionlimit(10 ** 5)
 input = sys.stdin.readline
 
-pre = []
+def printT(start, end):
+    if start > end:
+        return
+    root = preTree[start]
+    if start == end:
+        print(root)
+        return
+
+    mid = end+1
+    for i in range(start+1, end+1):
+        if preTree[i] > root:
+            mid = i
+            break
+    # left
+    printT(start+1, mid - 1)
+    # right
+    printT(mid, end)
+    print(root)
+    return
+
+V = int(input())
+preTree = [V]
 while True:
     try:
-        pre.append(int(sys.stdin.readline()))
+        preTree.append(int(input()))
     except:
         break
 
-
-def prepost(start, end):
-    if start > end:
-        return
-    mid = end + 1
-    for i in range(start + 1, end + 1):
-        if pre[i] > pre[start]:
-            mid = i
-            break
-    prepost(start + 1, mid - 1)  # 왼쪽 트리
-    prepost(mid, end)  # 오른쪽 트리
-    print(pre[start])  # 루트 노드
-
-
-prepost(0, len(pre) - 1)
+printT(0, len(preTree)-1)
