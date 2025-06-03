@@ -7,14 +7,12 @@ def dfs(node):
     global cnt
     for nxt in tree[node]:
         if visited[nxt] == 0:
-            visited[nxt] = 1
             if loc[nxt] == "1":
                 cnt += 2
-                visited[node] = 0
-                return
             else:
+                visited[nxt] = 1
                 dfs(nxt)
-                visited[node] = 0
+                visited[nxt] = 0
 
 
     return
@@ -33,6 +31,7 @@ for _ in range(N-1):                # 인접 리스트 생성
 
 for i in range(1, N+1):
     if loc[i] == "1":
-        dfs(i)
         visited[i] = 1
+        dfs(i)
+
 print(cnt)
