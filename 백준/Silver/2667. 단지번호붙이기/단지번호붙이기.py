@@ -1,38 +1,43 @@
 from collections import deque
+import sys
+input = sys.stdin.readline
 
-def bfs(sx,sy):
+n = int(input().strip())
+
+house = []
+
+for _ in range(n):
+    temp = list(map(int, input().strip()))
+    house.append(temp)
+
+dx = [1, -1, 0, 0]
+dy = [0, 0, 1, -1]
+
+def bfs(x, y):
+    queue = deque([[x, y]])
+    house[x][y] = 0
     cnt = 1
-    que = deque()
-    que.append((sx, sy))
 
-    while len(que) > 0:
-        x, y = que.popleft()
-
+    while queue:
+        x, y = queue.popleft()
         for i in range(4):
-            newX = x+ix[i]
-            newY = y+iy[i]
-            if 0 <= newX < N and 0 <= newY < N and homes[newX][newY] == "1":
-                homes[newX][newY] = "0"
-                cnt+=1
-                que.append((newX,newY))
+            nx = x + dx[i]
+            ny = y + dy[i]
 
+            if nx >= 0 and nx < n and ny >= 0 and ny < n:
+                if house[nx][ny] == 1:
+                    queue.append([nx, ny])
+                    house[nx][ny] = 0
+                    cnt += 1
     return cnt
 
-N = int(input())
-homes = [list(input()) for _ in range(N)]
-groupCnt = 0
-homeCnt = []
-ix = [0,-1,0,1]
-iy = [-1,0,1,0]
+count = []
+for i in range(n):
+    for j in range(n):
+        if house[i][j] == 1:
+            count.append(bfs(i, j))
+count.sort()
 
-for x in range(N):
-    for y in range(N):
-        if homes[x][y] == "1":
-            homes[x][y] = "0"           # visit 처리
-            groupCnt += 1
-            homeCnt.append(bfs(x,y))
-
-homeCnt.sort()
-print(groupCnt)
-for i in range(groupCnt):
-    print(homeCnt[i])
+print(len(count))
+for i in range(len(count)):
+    print(count[i])
