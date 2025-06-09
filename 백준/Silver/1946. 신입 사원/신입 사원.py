@@ -2,14 +2,14 @@ input = __import__("sys").stdin.readline
 T = int(input())
 for _ in range(T):
     N = int(input())
-    lst = []
+    lst = [0] * (N+1)
     for i in range(N):
-        lst.append(list(map(int, input().split())))
-    lst.sort()
-    a = lst[0][1]
+        x, y = map(int, input().split())
+        lst[x] = y
+    a = lst[1]
     cnt = 1
-    for i in range(1, N):
-        if lst[i][1] < a:
+    for i in range(2, N+1):
+        if lst[i] < a:
             cnt += 1
-            a = lst[i][1]
+            a = lst[i]
     print(cnt)
